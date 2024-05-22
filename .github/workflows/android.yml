@@ -33,3 +33,8 @@ jobs:
       working-directory: android
     - name: List build output
       run: ls -R android/app/build/outputs
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-debug-apk
+        path: android/app/build/outputs/apk/release/app-release.apk
