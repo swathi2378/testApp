@@ -31,3 +31,5 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
       working-directory: android
+    - name: List build output
+      run: ls -R android/app/build/outputs
