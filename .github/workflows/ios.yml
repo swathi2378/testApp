@@ -14,9 +14,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+            node-version: '20'
+      - name: Install yarn dependencies
+        run: yarn install
+      - name: Pod installation
+        working-directory: ios
+        run: pod install
       - name: Set Default Scheme
         working-directory: ios
-        run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
